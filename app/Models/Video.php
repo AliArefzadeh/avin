@@ -10,7 +10,12 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Video extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'user_id',
+        'title',
+        'path',
+        'thumbnail',
+    ];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
