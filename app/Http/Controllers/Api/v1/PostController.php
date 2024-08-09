@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use App\Services\PostService;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,6 +13,13 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $postService;
+
+
+    public function __construct(PostService $postService)
+    {
+        $this->postService = $postService;
+    }
     public function index()
     {
         return PostResource::collection(Post::all());
@@ -22,7 +30,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->postService->create(auth()->user(),$request->all());
+        return response()->json([
+            'message' => 'post has been created successfully',
+
+        ],201 );
     }
 
     /**
