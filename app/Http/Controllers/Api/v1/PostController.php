@@ -56,7 +56,6 @@ class PostController extends Controller
         $post = $this->postService->update($post, $request->all());
         return response()->json([
             'message' => 'post has been updated successfully',
-            'post' => $post
         ], 201);
     }
 
