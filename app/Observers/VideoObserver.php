@@ -47,6 +47,6 @@ class VideoObserver
      */
     public function forceDeleted(Video $video): void
     {
-        /*Storage::delete($video->path);*/
+
     }
 }
