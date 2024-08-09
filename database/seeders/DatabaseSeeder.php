@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Video;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,9 +18,18 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        User::factory(1)
+            ->has(
+                Post::factory(10)->has(Comment::factory(2))
+            )
+            ->has(
+                Video::factory(10)->has(Comment::factory(1))
+            )
+
+            ->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
     }
 }

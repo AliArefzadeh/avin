@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('title');
             $table->text('path');
-            $table->text('thumbnail');
             $table->timestamps();
         });
     }
