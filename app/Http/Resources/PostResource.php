@@ -20,7 +20,9 @@ class PostResource extends JsonResource
             'user_id'=>$this->user_id,
             'title'=>$this->title,
             'body'=>$this->body,
-            'created_at'=>$this->created_at
+            'thumbnail'=>$this->thumbnail,
+            'created_at'=>$this->created_at,
+            'updated_at'=>$this->updated_at,
         ];
     }
 }

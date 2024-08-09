@@ -52,11 +52,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        if ($comment) {
             $comment->delete();
-            return response()->json('Comment has been deleted'); // Successful deletion with no content
-        }
-
-
+            return response()->json('Comment has been deleted');
     }
 }

@@ -21,7 +21,7 @@ class VideoFactory extends Factory
             'user_id' => User::firstOrNew(),
             'title' => $this->faker->sentence(),
             'path' => $this->faker->imageUrl(),
-            'thumbnail' => $this->faker->imageUrl(),
+
         ];
     }
 }

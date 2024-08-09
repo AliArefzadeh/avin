@@ -19,7 +19,8 @@ class VideoResource extends JsonResource
             'user_id'=>$this->user_id,
             'title'=>$this->title,
             'path'=>$this->path,
-            'thumbnail'=>$this->thumbnail
+            'created_at'=>$this->created_at,
+            'updated_at'=>$this->updated_at,
         ];
     }
 }

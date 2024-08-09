@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Services\PostService;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class PostController extends Controller
     {
         $this->postService = $postService;
     }
+
     public function index()
     {
         return PostResource::collection(Post::all());
@@ -30,11 +32,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->postService->create(auth()->user(),$request->all());
+        $post = $this->postService->create(auth()->user(), $request->all());
         return response()->json([
             'message' => 'post has been created successfully',
-
-        ],201 );
+            'post' => new PostResource($post),
+        ], 201);
     }
 
     /**
@@ -49,16 +51,21 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $post = $this->postService->update($post, $request->all());
+        return response()->json([
+            'message' => 'post has been updated successfully',
+            'post' => $post
+        ], 201);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return response()->json('Post has been deleted');
     }
 }

@@ -21,6 +21,7 @@ class PostFactory extends Factory
             'user_id' => User::firstOrNew(),
             'title' => $this->faker->title,
             'body' => $this->faker->text,
+            'thumbnail' => $this->faker->imageUrl(),
         ];
     }
 }
